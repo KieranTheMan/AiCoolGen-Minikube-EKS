@@ -1,0 +1,38 @@
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# Kubernetes secrets and sensitive files
+*secret*.yml
+*secret*.yaml
+*.key
+*.pem
+*.crt
+
+# IDE and editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# OS files
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Temporary files
+*.tmp
+*.temp
+tmp/
+temp/
+
+# Build artifacts (if any)
+dist/
+build/
+
