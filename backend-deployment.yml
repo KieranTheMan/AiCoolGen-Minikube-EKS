@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aicoolgen-backend-deployment
+  labels:
+    tier: backend
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+    app: aicoolgen-backend
+  template:
+    metadata:
+      labels:
+      app: aicoolgen-backend
+    spec:
+      containers:
+      - name: backend
+        image: $<ECR_REGISTRY>/ai-gen-app-backend:latest
+        ports:
+        - containerPort: 8080
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu:  "250Mi"
+          limits:
+            memory: "250Mi"
+            cpu: "500m"
+      imagePullSecrets:
+      - name: ecr-registry-secret
