@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Service
+metadata:
+  name: frontend-service
+spec:
+ type: NodePort
+selector:
+  app: aicoolgen-frontend
+ports:
+  - protocol: TCP
+    port: 80
+    targetPort: 80
+    nodePort: 30081
