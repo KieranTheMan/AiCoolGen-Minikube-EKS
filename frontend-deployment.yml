@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: aicoolgen-deployment
+  name: aicoolgen-frontend-deployment
   labels:
     tier: frontend
 spec:
@@ -13,11 +13,11 @@ spec:
       maxUnavailable: 0
   selector:
     matchLabels:
-      app: aicoolgen
+      app: aicoolgen-frontend
   template:
     metadata:
       labels:
-        app: aicoolgen
+        app: aicoolgen-frontend
     spec:
       containers:
       - name: frontend
