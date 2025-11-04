@@ -1,0 +1,36 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: aicoolgen-frontend-deployment
+  labels:
+    tier: frontend
+spec:
+  replicas: 3
+  strategy:
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+  selector:
+    matchLabels:
+      app: aicoolgen-frontend
+  template:
+    metadata:
+      labels:
+        app: aicoolgen-frontend
+    spec:
+      containers:
+      - name: frontend
+        image: ${ECR_REGISTRY}/ai-gen-app-frontend:latest
+        ports:
+        - containerPort: 80
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+      imagePullSecrets:
+      - name: ecr-registry-secret
+
