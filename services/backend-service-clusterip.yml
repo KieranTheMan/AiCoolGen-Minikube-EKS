@@ -3,11 +3,10 @@ kind: Service
 metadata:
   name: backend-service
 spec:
- type: NodePort
+ type: ClusterIP
 selector:
   app: aicoolgen-backend
 ports:
   - protocol: TCP
     port: 80
     targetPort: 8000
-    newport: 30080
