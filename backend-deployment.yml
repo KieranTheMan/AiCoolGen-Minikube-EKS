@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
       - name: backend
-        image: $<ECR_REGISTRY>/ai-gen-app-backend:latest
+        image: ${ECR_REGISTRY}/ai-gen-app-backend:latest
         ports:
-        - containerPort: 8080
+        - containerPort: 8000
         resources:
           requests:
             memory: "128Mi"
