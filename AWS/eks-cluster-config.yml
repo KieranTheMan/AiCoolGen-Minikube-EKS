@@ -1,0 +1,56 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: aicoolgen-eks-cluster
+  region: eu-west-2
+  version: "1.28"
+
+# IAM OIDC provider for service accounts
+iam:
+  withOIDC: true
+
+# VPC Configuration
+vpc:
+  cidr: 10.0.0.0/16
+  nat:
+    gateway: single #Good for devleopment else HighAvalible
+  clusterEndpoints:
+    publicAccess: false #true for development else false
+    privateAccess: true
+
+# Managed Node Groups
+managedNodeGroups:
+  - name: aicoolgen-ng-general
+    instanceType: t3.small
+    minSize: 3
+    maxSize: 5
+    desiredCapacity: 2
+    volumeSize: 20
+    volumeType: gp3
+    labels:
+      role: general
+      enviorment: production
+    tags:
+      nodegroup-role: general
+      enviorment: production
+    iam:
+      withAddonPolicies:
+        autoScaler: true
+        ebs: true
+        efs: true
+        albIngress: true
+        cloudWatch: true
+    privateNetworking: true
+
+# CloudWatch Logging
+cloudWatch:
+  clusterLogging:
+    enableTypes:
+      - api
+      - audit
+      - authenticator
+      - controllerManager
+      - scheduler
+    logRetentionInDays: 7
+
