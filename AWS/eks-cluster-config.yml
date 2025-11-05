@@ -6,7 +6,7 @@ metadata:
   region: eu-west-2
   version: "1.28"
 
-# IAM OIDC provider for service accounts
+
 iam:
   withOIDC: true
 
